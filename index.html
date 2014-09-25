@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+</head>
+<body>
+<div class="control-group">
+                              <label class="control-label">Birth Date</label>
+                              <div class="controls">
+                                 <input id="Txt_BDate" name="Txt_BDate" size="16" type="date" value="12/02/2012" onchange="ageCount()" required />
+                              </div>
+                           </div>
+					   
+						   <div class="control-group">
+                              <label class="control-label">Age</label>
+                              <div class="controls"> 
+                              <input type="text" id="Txt_Age" name="Txt_Age" class="span6 m-wrap" disabled/>
+                              </div>
+                           </div>
+					   <script type="text/javascript">
+  
+function ageCount() 
+{
+
+var inputdob = document.getElementById("Txt_BDate").value;//Birth Date
+var yearDiff= inputdob .substr(0, 4);//Birth Year
+var monDiff=inputdob .substr(5, 2);//Birth Month
+var dateDiff=inputdob .substr(8, 2);//Birth Date
+var d = new Date();
+var yearAct=d.getFullYear();//Current Year
+var monAct=d.getMonth()+1;//Current Month ( One added since month starts from 0)
+var dateAct=d.getDate();//Current Date
+var aage= Math.abs(yearDiff -yearAct);//Current Age
+if(monDiff<monAct)//Birth Month before Current Month
+{
+document.getElementById("Txt_Age").value=aage ;
+}
+else if(monDiff==monAct)//Birth Month and Current Month are same
+{
+	if(dateDiff<dateAct)//already birth day gone
+	{
+	document.getElementById("Txt_Age").value=aage ;
+	}
+	else if(dateDiff==dateAct)// today is the birth day
+	{
+	document.getElementById("Txt_Age").value=aage ;
+	}
+	else//Birth date yet to come
+	{
+	aage=aage-1;
+	document.getElementById("Txt_Age").value=aage ;
+	}
+}
+else//Birth Month after Current Month
+{
+aage=aage-1;
+document.getElementById("Txt_Age").value=aage ;
+}
+
+//document.getElementById("Txt_Age").value=aage ;
+       
+    }
+    </script>
+    
+    <!-- END JAVASCRIPTS -->   
+</body>
+<!-- END BODY -->
+</html>
